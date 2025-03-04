@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endocrinology Discussion (5)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            user-select: none; /* يمنع تحديد النص */
+            -webkit-user-select: none; /* لمتصفحات WebKit مثل Chrome وSafari */
+            -moz-user-select: none; /* لمتصفح Firefox */
+            -ms-user-select: none; /* لمتصفح Internet Explorer/Edge */
+        }
+        @media print { /* إخفاء الصفحة عند الطباعة */
+            body { 
+                display: none;
+            }
+        }
+
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        img {
+            pointer-events: none; /* يمنع سحب الصور */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Endocrinology Discussion (5)</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>1- Which one of the following is not part of the diagnostic criteria for the metabolic syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="High triglycerides"> High triglycerides</label>
+                <label><input type="radio" name="q1" value="Low HDL"> Low HDL</label>
+                <label><input type="radio" name="q1" value="High LDL"> High LDL</label>
+                <label><input type="radio" name="q1" value="Central obesity"> Central obesity</label>
+                <label><input type="radio" name="q1" value="Hypertension"> Hypertension</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-2">
+            <p>2- One of your patients is diagnosed with metabolic syndrome. Which one of the following is associated with this condition?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="Endometriosis"> Endometriosis</label>
+                <label><input type="radio" name="q2" value="Hypothyroidism"> Hypothyroidism</label>
+                <label><input type="radio" name="q2" value="Asymptomatic rise in amylase levels"> Asymptomatic rise in amylase levels</label>
+                <label><input type="radio" name="q2" value="Elevated albumin levels"> Elevated albumin levels</label>
+                <label><input type="radio" name="q2" value="Raised uric acid levels"> Raised uric acid levels</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-3">
+            <p>3- An obese man presents as he is concerned about his risk of developing cardiovascular disease. Which one of the following sets of results would suggest a diagnosis of the metabolic syndrome using the Scottish Intercollegiate Guidelines Network (SIGN) criteria?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Waist circumference = 98 cm, fasting glucose = 7.2 mmol/l, HDL = 1.2 mmol/l"> Waist circumference = 98 cm, fasting glucose = 7.2 mmol/l, HDL = 1.2 mmol/l</label>
+                <label><input type="radio" name="q3" value="Triglycerides = 20 mmol/l, HDL =1.2 mmol/l, fasting glucose = 5.4 mmol/l"> Triglycerides = 20 mmol/l, HDL =1.2 mmol/l, fasting glucose = 5.4 mmol/l</label>
+                <label><input type="radio" name="q3" value="Blood pressure = 140/90 mmHg, waist circumference = 90 cm, HDL =1.4 mmol/l"> Blood pressure = 140/90 mmHg, waist circumference = 90 cm, HDL =1.4 mmol/l</label>
+                <label><input type="radio" name="q3" value="Waist circumference =110 cm, fasting glucose = 5.8 mmol/l, HDL = 0.8 mmol/l"> Waist circumference =110 cm, fasting glucose = 5.8 mmol/l, HDL = 0.8 mmol/l</label>
+                <label><input type="radio" name="q3" value="LDL = 3.0 mmol/l, blood pressure = 130/80, fasting glucose = 6.4 mmol/L"> LDL = 3.0 mmol/l, blood pressure = 130/80, fasting glucose = 6.4 mmol/L</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-4">
+            <p>4- What is the main mechanism of action of simvastatin?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Bile acid sequestrant"> Bile acid sequestrant</label>
+                <label><input type="radio" name="q4" value="Decreases hepatic HDL synthesis"> Decreases hepatic HDL synthesis</label>
+                <label><input type="radio" name="q4" value="Inhibits lipoprotein lipase"> Inhibits lipoprotein lipase</label>
+                <label><input type="radio" name="q4" value="Decreases intrinsic cholesterol synthesis"> Decreases intrinsic cholesterol synthesis</label>
+                <label><input type="radio" name="q4" value="Agonists of PPAR-alpha"> Agonists of PPAR-alpha</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-5">
+            <p>5- A 67-year-old female is prescribed simvastatin for hyperlipidaemia. Which one of the following is most likely to interact with her medication?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Orange juice"> Orange juice</label>
+                <label><input type="radio" name="q5" value="Apple juice"> Apple juice</label>
+                <label><input type="radio" name="q5" value="Grapefruit juice"> Grapefruit juice</label>
+                <label><input type="radio" name="q5" value="Cranberry juice"> Cranberry juice</label>
+                <label><input type="radio" name="q5" value="Carrot juice"> Carrot juice</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-6">
+            <p>6- You are asked to review a 72-year-old man due to dark-coloured urine and generalized muscle aches, particularly in his thighs. He has a past medical history of type 2 diabetes, chronic kidney disease, and myocardial infarction. He reports that he recently started a new medication and is compliant with his usual medications; metformin, atorvastatin, ramipril, and aspirin. What new drug is likely to have caused this complication?</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="Allopurinol"> Allopurinol</label>
+                <label><input type="radio" name="q6" value="Ciprofloxacin"> Ciprofloxacin</label>
+                <label><input type="radio" name="q6" value="Clarithromycin"> Clarithromycin</label>
+                <label><input type="radio" name="q6" value="Furosemide"> Furosemide</label>
+                <label><input type="radio" name="q6" value="Ibuprofen"> Ibuprofen</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-7">
+            <p>7- A 61-year-old man with peripheral arterial disease is prescribed simvastatin. What is the most appropriate blood test monitoring?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="LFTs + creatinine kinase at baseline, 1-3 months and at intervals of 6 months for 1 year"> LFTs + creatinine kinase at baseline, 1-3 months and at intervals of 6 months for 1 year</label>
+                <label><input type="radio" name="q7" value="LFTs at baseline and every 3 months for first year"> LFTs at baseline and every 3 months for first year</label>
+                <label><input type="radio" name="q7" value="Routine blood tests not recommended"> Routine blood tests not recommended</label>
+                <label><input type="radio" name="q7" value="LFTs at baseline and annually"> LFTs at baseline and annually</label>
+                <label><input type="radio" name="q7" value="LFTs at baseline, 3 months and 12 months"> LFTs at baseline, 3 months and 12 months</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-8">
+            <p>8- A 54-year-old man is diagnosed with type 2 diabetes mellitus. A decision is made to start simvastatin 40mg. What is the ideal time to advise patients to take this medication?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="After breakfast"> After breakfast</label>
+                <label><input type="radio" name="q8" value="Last thing in the evening"> Last thing in the evening</label>
+                <label><input type="radio" name="q8" value="After evening meal"> After evening meal</label>
+                <label><input type="radio" name="q8" value="Just before evening meal"> Just before evening meal</label>
+                <label><input type="radio" name="q8" value="First thing in the morning"> First thing in the morning</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-9">
+            <p>9- A 39-year-old woman comes to see you as she has recently found out she is pregnant. She has a background of raised cholesterol, asthma, constipation and hay fever. She is taking several medications including atorvastatin, combined beclometasone-formoterol inhaler, montelukast, nasal steroids and lactulose. She asks for advice regarding her regular medication. What advice should you tell her?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="Stop lactulose but continue her regular medication"> Stop lactulose but continue her regular medication</label>
+                <label><input type="radio" name="q9" value="Stop nasal steroids but continue her regular medication"> Stop nasal steroids but continue her regular medication</label>
+                <label><input type="radio" name="q9" value="Stop atorvastatin but continue her regular medication"> Stop atorvastatin but continue her regular medication</label>
+                <label><input type="radio" name="q9" value="Stop beclometasone-formoterol inhaler but continue her regular medication"> Stop beclometasone-formoterol inhaler but continue her regular medication</label>
+                <label><input type="radio" name="q9" value="Stop montelukast but continue her regular medication"> Stop montelukast but continue her regular medication</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-10">
+            <p>10- A 36-year-old female with a BMI of 34 kg/m2 is reviewed after managing to lose 3 kg in the past month. She asks about the possibility of starting a drug to help her lose weight. What is the primary mode of action of orlistat?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="Leptin antagonist"> Leptin antagonist</label>
+                <label><input type="radio" name="q10" value="Pancreatic lipase inhibitor"> Pancreatic lipase inhibitor</label>
+                <label><input type="radio" name="q10" value="Blocks intestinal absorption of lipids"> Blocks intestinal absorption of lipids</label>
+                <label><input type="radio" name="q10" value="HMG-CoA reductase inhibitor"> HMG-CoA reductase inhibitor</label>
+                <label><input type="radio" name="q10" value="Centrally-acting appetite suppressant"> Centrally-acting appetite suppressant</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-11">
+            <p>11- A 45-year-old woman who you have treated for obesity comes for review. Despite ongoing lifestyle interventions and trials of orlistat and sibutramine she has failed to lose a significant amount of weight. She is currently taking ramipril for hypertension but a recent fasting glucose was normal. For this patient, what is the cut-off body mass index (BMI) that would trigger a referral for consideration of bariatric surgery?</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="BMI > 35 kg/m2"> BMI > 35 kg/m2</label>
+                <label><input type="radio" name="q11" value="BMI > 40 kg/m2"> BMI > 40 kg/m2</label>
+                <label><input type="radio" name="q11" value="BMI > 30 kg/m2"> BMI > 30 kg/m2</label>
+                <label><input type="radio" name="q11" value="BMI > 38 kg/m2"> BMI > 38 kg/m2</label>
+                <label><input type="radio" name="q11" value="BMI > 45 kg/m2"> BMI > 45 kg/m2</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-12">
+            <p>12- A 50-year-old man who is known to have obesity and hypertension comes for review. His current BMI is 38 kg/m^2 and blood pressure today is 154/92 mmHg despite ramipril and bendroflumethiazide. Lifestyle and a trial of orlistat have failed to reduce his weight. Which one of the following is the most suitable intervention?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="Biliopancreatic diversion with duodenal switch"> Biliopancreatic diversion with duodenal switch</label>
+                <label><input type="radio" name="q12" value="Laparoscopic-adjustable gastric banding"> Laparoscopic-adjustable gastric banding</label>
+                <label><input type="radio" name="q12" value="Trial of sibutramine"> Trial of sibutramine</label>
+                <label><input type="radio" name="q12" value="Referral for counselling to discuss his excessive eating"> Referral for counselling to discuss his excessive eating</label>
+                <label><input type="radio" name="q12" value="Sleeve gastrectomy"> Sleeve gastrectomy</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-13">
+            <p>13-Which one of the following types of bariatric surgery is most likely to cause significant malabsorption?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Laparoscopic-adjustable gastric banding"> Laparoscopic-adjustable gastric banding</label>
+                <label><input type="radio" name="q13" value="Roux-en-Y gastric bypass surgery"> Roux-en-Y gastric bypass surgery</label>
+                <label><input type="radio" name="q13" value="Biliopancreatic diversion with duodenal switch"> Biliopancreatic diversion with duodenal switch</label>
+                <label><input type="radio" name="q13" value="Sleeve gastrectomy"> Sleeve gastrectomy</label>
+                <label><input type="radio" name="q13" value="Intragastric balloon"> Intragastric balloon</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-14">
+            <p>14-Which one of the following is least associated with gynaecomastia?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="Klinefelter's syndrome"> Klinefelter's syndrome</label>
+                <label><input type="radio" name="q14" value="Seminoma"> Seminoma</label>
+                <label><input type="radio" name="q14" value="Liver disease"> Liver disease</label>
+                <label><input type="radio" name="q14" value="Puberty"> Puberty</label>
+                <label><input type="radio" name="q14" value="Hypothyroidism"> Hypothyroidism</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-15">
+            <p>15-A 61-year-old man presents as he developed enlargement of his breast tissue. He has become very self conscious and is worried about going on holiday in the summer. Which one of the following drugs is most likely to be responsible?</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="Amitriptyline"> Amitriptyline</label>
+                <label><input type="radio" name="q15" value="Isoniazid"> Isoniazid</label>
+                <label><input type="radio" name="q15" value="Verapamil"> Verapamil</label>
+                <label><input type="radio" name="q15" value="Methyldopa"> Methyldopa</label>
+                <label><input type="radio" name="q15" value="Spironolactone"> Spironolactone</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-16">
+            <p>16-You review a 70-year old who has a long past medical history and is on multiple drugs. He has developed excessive amounts of breast tissue bilaterally. Which one of the following drugs is most likely to be responsible?</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="Tamoxifen"> Tamoxifen</label>
+                <label><input type="radio" name="q16" value="Terbinafine"> Terbinafine</label>
+                <label><input type="radio" name="q16" value="Amiodarone"> Amiodarone</label>
+                <label><input type="radio" name="q16" value="Goserelin (Zoladex)"> Goserelin (Zoladex)</label>
+                <label><input type="radio" name="q16" value="Lymecycline"> Lymecycline</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-17">
+            <p>17-A 62 year old man has noticed that his breasts have been swollen and tender to touch. He is on a long list of medications. Which of the following medications can cause gynaecomastia?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="Bendroflumethiazide"> Bendroflumethiazide</label>
+                <label><input type="radio" name="q17" value="Dihydrotestosterone"> Dihydrotestosterone</label>
+                <label><input type="radio" name="q17" value="Finasteride"> Finasteride</label>
+                <label><input type="radio" name="q17" value="Metolazone"> Metolazone</label>
+                <label><input type="radio" name="q17" value="Tamoxifen"> Tamoxifen</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-18">
+            <p>18-A 62-year-old man is commenced on finasteride for symptoms of bladder outflow obstruction. Which one of the following adverse effects is most associated with this treatment?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Alopecia"> Alopecia</label>
+                <label><input type="radio" name="q18" value="Gynaecomastia"> Gynaecomastia</label>
+                <label><input type="radio" name="q18" value="Prostate cancer"> Prostate cancer</label>
+                <label><input type="radio" name="q18" value="Increased levels of serum prostate specific antigen"> Increased levels of serum prostate specific antigen</label>
+                <label><input type="radio" name="q18" value="Postural hypotension"> Postural hypotension</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-19">
+            <p>19-What is the mode of inheritance of haemochromatosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Autosomal recessive"> Autosomal recessive</label>
+                <label><input type="radio" name="q19" value="X-linked dominant"> X-linked dominant</label>
+                <label><input type="radio" name="q19" value="Mitochondrial inheritance"> Mitochondrial inheritance</label>
+                <label><input type="radio" name="q19" value="Autosomal dominant"> Autosomal dominant</label>
+                <label><input type="radio" name="q19" value="X-linked recessive"> X-linked recessive</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-20">
+            <p>20-A 35-year-old man is investigated for lethargy, arthralgia and deranged liver function tests. He is eventually diagnosed as having hereditary hemochromatosis. His wife has a genetic test which shows she is not a carrier of the disease. What is the chance his child will develop haemochromatosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="0%"> 0%</label>
+                <label><input type="radio" name="q20" value="25%"> 25%</label>
+                <label><input type="radio" name="q20" value="50% if female. 0% if male"> 50% if female. 0% if male</label>
+                <label><input type="radio" name="q20" value="50% if male. 0% if female"> 50% if male. 0% if female</label>
+                <label><input type="radio" name="q20" value="50%"> 50%</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-21">
+            <p>21-Causes of polycythemia include the following except ..</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="COPD"> COPD</label>
+                <label><input type="radio" name="q21" value="polycythemia rubra vera"> polycythemia rubra vera</label>
+                <label><input type="radio" name="q21" value="dehydration"> dehydration</label>
+                <label><input type="radio" name="q21" value="Haemochromatosis"> Haemochromatosis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-22">
+            <p>22-A 46-year-old man presents as he is concerned about reduced libido, erectile dysfunction and excessive thirst. His wife also reports that he has 'no energy' and is generally listless. During the review of systems he also complains of pains in both hands. Which one of the following investigations is most likely to reveal the diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="Transferrin saturation"> Transferrin saturation</label>
+                <label><input type="radio" name="q22" value="Testosterone"> Testosterone</label>
+                <label><input type="radio" name="q22" value="Cortisol"> Cortisol</label>
+                <label><input type="radio" name="q22" value="Blood glucose"> Blood glucose</label>
+                <label><input type="radio" name="q22" value="Prolactin"> Prolactin</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-23">
+            <p>23-Best investigation of hemochromatosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="Iron"> Iron</label>
+                <label><input type="radio" name="q23" value="Ferritin and TIBC"> Ferritin and TIBC</label>
+                <label><input type="radio" name="q23" value="Iron and saturation"> Iron and saturation</label>
+                <label><input type="radio" name="q23" value="Ferritin and transferrin saturation"> Ferritin and transferrin saturation</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-24">
+            <p>24-Which one of the following features of haemochromatosis may be reversible with treatment?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Cardiomyopathy"> Cardiomyopathy</label>
+                <label><input type="radio" name="q24" value="Hypogonadotrophic hypogonadism"> Hypogonadotrophic hypogonadism</label>
+                <label><input type="radio" name="q24" value="Diabetes mellitus"> Diabetes mellitus</label>
+                <label><input type="radio" name="q24" value="Arthropathy"> Arthropathy</label>
+                <label><input type="radio" name="q24" value="Liver cirrhosis"> Liver cirrhosis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-25">
+            <p>25- All of the following hormones is produced by the anterior pituitary EXCEPT:</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="Adrenocorticotropic hormone"> Adrenocorticotropic hormone</label>
+                <label><input type="radio" name="q25" value="Growth hormone"> Growth hormone</label>
+                <label><input type="radio" name="q25" value="Oxytocin"> Oxytocin</label>
+                <label><input type="radio" name="q25" value="Prolactin"> Prolactin</label>
+                <label><input type="radio" name="q25" value="Thyroid-stimulating hormone"> Thyroid-stimulating hormone</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-26">
+            <p>26-A 42-year-old man presents to his GP feeling generally unwell. For the past three months he has been experiencing daily frontal headaches which have not been helped by regular paracetamol. He has also noticed some unusual symptoms such as his wedding ring no longer fitting, his shoe size apparently increasing and a small amount of milky discharge from both nipples. On examination his blood pressure is 168/96 mmHg. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="Pheochromocytoma"> Pheochromocytoma</label>
+                <label><input type="radio" name="q26" value="Cushing's syndrome"> Cushing's syndrome</label>
+                <label><input type="radio" name="q26" value="Diabetes insipidus"> Diabetes insipidus</label>
+                <label><input type="radio" name="q26" value="Macroprolactinoma"> Macroprolactinoma</label>
+                <label><input type="radio" name="q26" value="Acromegaly"> Acromegaly</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-27">
+            <p>27-Which of the following is least recognised as a potential complication of acromegaly?</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="Colorectal cancer"> Colorectal cancer</label>
+                <label><input type="radio" name="q27" value="Hypertension"> Hypertension</label>
+                <label><input type="radio" name="q27" value="Cardiomyopathy"> Cardiomyopathy</label>
+                <label><input type="radio" name="q27" value="Diabetes mellitus"> Diabetes mellitus</label>
+                <label><input type="radio" name="q27" value="Pulmonary hypertension"> Pulmonary hypertension</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-28">
+            <p>28-A 40-year-old man presents to the GP concerned about his risk of developing cancer. You notice that he has large spade-like hands, a prominent forehead and nose, and thick skin. Which of the following cancers is he at increased risk of developing?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="Pancreatic carcinoma"> Pancreatic carcinoma</label>
+                <label><input type="radio" name="q28" value="Colorectal carcinoma"> Colorectal carcinoma</label>
+                <label><input type="radio" name="q28" value="Adrenal carcinoma"> Adrenal carcinoma</label>
+                <label><input type="radio" name="q28" value="Malignant melanoma"> Malignant melanoma</label>
+                <label><input type="radio" name="q28" value="Lung cancer"> Lung cancer</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-29">
+            <p>29- A 33 year old man undergoes a CT scan for recurrent headaches, which reveals a 21 x 15 mm pituitary adenoma. On further questioning he has been feeling more tired over recent months and feeling low in his mood. He is tested for pituitary dysfunction and visual field disturbance. The secretion of which hormone is often the first to be affected due to mass effect by a pituitary macroadenoma?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="ACTH"> ACTH</label>
+                <label><input type="radio" name="q29" value="FSH"> FSH</label>
+                <label><input type="radio" name="q29" value="GH"> GH</label>
+                <label><input type="radio" name="q29" value="LH"> LH</label>
+                <label><input type="radio" name="q29" value="TSH"> TSH</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-30">
+            <p>30-A 37-year-old man presents with symptoms of an acute headache, vomiting, malaise and visual disturbance. A neurological examination reveals a bitemporal superior quadrantanopia. A CT scan shows a hyperdense area within the pituitary gland. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Kallman syndrome"> Kallman syndrome</label>
+                <label><input type="radio" name="q30" value="Septo-optic dysplasia"> Septo-optic dysplasia</label>
+                <label><input type="radio" name="q30" value="Sheehan’s syndrome"> Sheehan’s syndrome</label>
+                <label><input type="radio" name="q30" value="Empty sella syndrome"> Empty sella syndrome</label>
+                <label><input type="radio" name="q30" value="Pituitary apoplexy"> Pituitary apoplexy</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-31">
+            <p>31-What causes increased sweating in patients with acromegaly?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="Increased sodium content in sweat"> Increased sodium content in sweat</label>
+                <label><input type="radio" name="q31" value="Raised basal metabolic rate"> Raised basal metabolic rate</label>
+                <label><input type="radio" name="q31" value="Episodic hypoglycemia"> Episodic hypoglycemia</label>
+                <label><input type="radio" name="q31" value="Low-grade chronic pyrexia"> Low-grade chronic pyrexia</label>
+                <label><input type="radio" name="q31" value="Sweat gland hypertrophy"> Sweat gland hypertrophy</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-32">
+            <p>32-A 40-year-old male known diabetic presents with increasing headaches and visual issues. On examination, he has enlargement of the hands and feet, coarse facial features and splaying of the teeth. What is the most appropriate first-line investigation?</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="24-Hour urinary free cortisol"> 24-Hour urinary free cortisol</label>
+                <label><input type="radio" name="q32" value="Adrenocorticotropic hormone (ACTH) assay"> Adrenocorticotropic hormone (ACTH) assay</label>
+                <label><input type="radio" name="q32" value="Growth hormone level"> Growth hormone level</label>
+                <label><input type="radio" name="q32" value="Serum insulin-like growth factor-1 (IGF-1) level"> Serum insulin-like growth factor-1 (IGF-1) level</label>
+                <label><input type="radio" name="q32" value="Serum prolactin level"> Serum prolactin level</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-33">
+            <p>33-A 45-year-old man presents with bitemporal hemianopia and spade-like hands. What is the definite test to confirm the diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="Early morning growth hormone"> Early morning growth hormone</label>
+                <label><input type="radio" name="q33" value="Insulin tolerance test"> Insulin tolerance test</label>
+                <label><input type="radio" name="q33" value="Oral glucose tolerance test with growth hormone measurements"> Oral glucose tolerance test with growth hormone measurements</label>
+                <label><input type="radio" name="q33" value="Random insulin-like growth factor 1 (IGF-1)"> Random insulin-like growth factor 1 (IGF-1)</label>
+                <label><input type="radio" name="q33" value="Short ACTH test"> Short ACTH test</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-34">
+            <p>34- A 62 year old man attends the diabetes clinic and is noted to have large hands and prognathism. He complains of headaches of increasing frequency and severity over the preceding 6 months since his last visit to the clinic. Which endocrine investigation should be performed to investigate the cause of his symptoms?</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="24-hour urinary steroid profile"> 24-hour urinary steroid profile</label>
+                <label><input type="radio" name="q34" value="Dexamethasone suppression test"> Dexamethasone suppression test</label>
+                <label><input type="radio" name="q34" value="Insulin tolerance test"> Insulin tolerance test</label>
+                <label><input type="radio" name="q34" value="Oral glucose tolerance test with serial GH measurements"> Oral glucose tolerance test with serial GH measurements</label>
+                <label><input type="radio" name="q34" value="Saline suppression test"> Saline suppression test</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-35">
+            <p>35-A 33-year-old man complains of a tingling sensation in his hands for several months which occasionally awakens him during sleep. The patient has noticed he has gained weight and no longer wears his wedding ring as it has become too tight. You notice the patient is sweating while speaking to you and has quite a large jaw, furrowed tongue and large hands. His blood pressure reading is 142/91 mmHg. The most appropriate investigation would be:</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="MRI scan of the pituitary"> MRI scan of the pituitary</label>
+                <label><input type="radio" name="q35" value="Glucose tolerance test"> Glucose tolerance test</label>
+                <label><input type="radio" name="q35" value="Growth hormone levels"> Growth hormone levels</label>
+                <label><input type="radio" name="q35" value="Thyroid function tests"> Thyroid function tests</label>
+                <label><input type="radio" name="q35" value="Serum prolactin levels"> Serum prolactin levels</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-36">
+            <p>36-A 53 year man presents as his wife has noticed a change in his appearance. He has also noticed his hands seem larger. On examination blood pressure is 170/94 and he is noted to have bitemporal hemianopia. What is the most appropriate first-line treatment?</p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="Octreotide"> Octreotide</label>
+                <label><input type="radio" name="q36" value="External irradiation"> External irradiation</label>
+                <label><input type="radio" name="q36" value="Pegvisomant"> Pegvisomant</label>
+                <label><input type="radio" name="q36" value="Trans-sphenoidal surgery"> Trans-sphenoidal surgery</label>
+                <label><input type="radio" name="q36" value="Bromocriptine"> Bromocriptine</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-37">
+            <p>37-A 19-year-old woman presents with concerns about changes to her facial appearance, in particular her nose and jaw seem quite large, she is also quite sweaty and despite using antiperspirants is finding it difficult to control and is afraid of embarrassment at university. A glucose tolerance test is performed and found to be raised. The most appropriate management would be:</p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="Trans-sphenoidal surgery"> Trans-sphenoidal surgery</label>
+                <label><input type="radio" name="q37" value="Octreotide"> Octreotide</label>
+                <label><input type="radio" name="q37" value="Bromocriptine"> Bromocriptine</label>
+                <label><input type="radio" name="q37" value="Pituitary radiotherapy"> Pituitary radiotherapy</label>
+                <label><input type="radio" name="q37" value="Pegvisomant"> Pegvisomant</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-38">
+            <p>38-A 61-year-old male is diagnosed with acromegaly after presenting with headaches, sweaty palms and a change in shoe size. Magnetic resonance scan has shown a pituitary macroadenoma and he is planned for transsphenoidal surgery. What treatment is often used as an adjunct to surgery?</p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Bromocriptine"> Bromocriptine</label>
+                <label><input type="radio" name="q38" value="Cabergoline"> Cabergoline</label>
+                <label><input type="radio" name="q38" value="Octreotide"> Octreotide</label>
+                <label><input type="radio" name="q38" value="Pegvisomant"> Pegvisomant</label>
+                <label><input type="radio" name="q38" value="Prednisolone"> Prednisolone</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-39">
+            <p>39- A 64-year-old patient is prescribed pegvisomant for the treatment of acromegaly. What is the mechanism of action of pegvisomant?</p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="IGF-1 receptor antagonist"> IGF-1 receptor antagonist</label>
+                <label><input type="radio" name="q39" value="Growth hormone receptor antagonist"> Growth hormone receptor antagonist</label>
+                <label><input type="radio" name="q39" value="IGF-1 receptor agonist"> IGF-1 receptor agonist</label>
+                <label><input type="radio" name="q39" value="Growth hormone receptor agonist"> Growth hormone receptor agonist</label>
+                <label><input type="radio" name="q39" value="Long-acting somatostatin analogue"> Long-acting somatostatin analogue</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-40">
+            <p>40-A 15-year-old girl complains of headaches which started 6 weeks ago. The headaches initially occurred 1–2 times a week but now occur up to five times a week, they are not associated with any neurological problems, visual disturbances, nausea or vomiting. The girl also reports a white discharge from both of her nipples. She has not started menstruating. The most appropriate investigation is:</p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="Lateral skull x-ray"> Lateral skull x-ray</label>
+                <label><input type="radio" name="q40" value="CT scan"> CT scan</label>
+                <label><input type="radio" name="q40" value="MRI scan"> MRI scan</label>
+                <label><input type="radio" name="q40" value="Thyroid function tests"> Thyroid function tests</label>
+                <label><input type="radio" name="q40" value="Serum prolactin measurement"> Serum prolactin measurement</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-41">
+            <p>41- All of the following drugs may produce galactorrhea except:</p>
+            <div class="options">
+                <label><input type="radio" name="q41" value="Salicylates"> Salicylates</label>
+                <label><input type="radio" name="q41" value="Reserpine"> Reserpine</label>
+                <label><input type="radio" name="q41" value="Cimetidine"> Cimetidine</label>
+                <label><input type="radio" name="q41" value="Methyldopa"> Methyldopa</label>
+                <label><input type="radio" name="q41" value="Metoclopramide"> Metoclopramide</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-42">
+            <p>42-Which one of the following may be associated with galactorrhoea?</p>
+            <div class="options">
+                <label><input type="radio" name="q42" value="Primary hypothyroidism"> Primary hypothyroidism</label>
+                <label><input type="radio" name="q42" value="Addison's disease"> Addison's disease</label>
+                <label><input type="radio" name="q42" value="Cushing's syndrome"> Cushing's syndrome</label>
+                <label><input type="radio" name="q42" value="Grave's disease"> Grave's disease</label>
+                <label><input type="radio" name="q42" value="Bromocriptine"> Bromocriptine</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-43">
+            <p>43-An insulin stress test is most useful in the investigation of ..</p>
+            <div class="options">
+                <label><input type="radio" name="q43" value="Glucagonoma"> Glucagonoma</label>
+                <label><input type="radio" name="q43" value="Insulinoma"> Insulinoma</label>
+                <label><input type="radio" name="q43" value="Addison's disease"> Addison's disease</label>
+                <label><input type="radio" name="q43" value="Hypopituitarism"> Hypopituitarism</label>
+                <label><input type="radio" name="q43" value="Diabetes mellitus"> Diabetes mellitus</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-44">
+            <p>44-Dynamic pituitary function tests may be used to assess each one of the following, except ..</p>
+            <div class="options">
+                <label><input type="radio" name="q44" value="Cortisol"> Cortisol</label>
+                <label><input type="radio" name="q44" value="Prolactin"> Prolactin</label>
+                <label><input type="radio" name="q44" value="Growth hormone"> Growth hormone</label>
+                <label><input type="radio" name="q44" value="Follicular stimulating hormone"> Follicular stimulating hormone</label>
+                <label><input type="radio" name="q44" value="Antidiuretic hormone"> Antidiuretic hormone</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-45">
+            <p>45-A 60-year-old man visits his GP complaining of tiredness. He has noticed weight loss over the last six months and irritation of the tip of his penis which appears inflamed on examination. He mentions he has been visiting the toilet more often than usual and feeling thirsty. The most appropriate investigation would be:</p>
+            <div class="options">
+                <label><input type="radio" name="q45" value="Oral glucose tolerance test"> Oral glucose tolerance test</label>
+                <label><input type="radio" name="q45" value="Measurement of glycated haemoglobin"> Measurement of glycated haemoglobin</label>
+                <label><input type="radio" name="q45" value="Random plasma glucose test"> Random plasma glucose test</label>
+                <label><input type="radio" name="q45" value="Water deprivation test"> Water deprivation test</label>
+                <label><input type="radio" name="q45" value="Measurement of triglyceride levels"> Measurement of triglyceride levels</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-46">
+            <p>46-A 29-year-old man presents with a 4-week history of polyuria and extreme thirst. The patient denies difficulty voiding, hesitancy or haematuria, although the urine is very dilute. The patient does not believe he has lost any weight and maintains a good diet. No findings are found on urine dipstick. The most appropriate investigation is:</p>
+            <div class="options">
+                <label><input type="radio" name="q46" value="Serum osmolality"> Serum osmolality</label>
+                <label><input type="radio" name="q46" value="Fasting plasma glucose"> Fasting plasma glucose</label>
+                <label><input type="radio" name="q46" value="Urinary electrolytes"> Urinary electrolytes</label>
+                <label><input type="radio" name="q46" value="Magnetic resonance imaging (MRI) scan of the head"> Magnetic resonance imaging (MRI) scan of the head</label>
+                <label><input type="radio" name="q46" value="Water deprivation test"> Water deprivation test</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-47">
+            <p>47-A 45-year-old man is investigated following referral to the endocrinology clinic with polydipsia. Plasma glucose and calcium are normal. A water deprivation test is performed with the following results: Starting plasma osm. 319 mOsmol/l (275-295 mOsmol/l) Final urine osm. 142 mOsmol/l Urine osm. post-DDAVP 885 mOsmol/l What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q47" value="Psychogenic polydipsia"> Psychogenic polydipsia</label>
+                <label><input type="radio" name="q47" value="Nephrogenic diabetes insipidus"> Nephrogenic diabetes insipidus</label>
+                <label><input type="radio" name="q47" value="Primary hyperparathyroidism"> Primary hyperparathyroidism</label>
+                <label><input type="radio" name="q47" value="Pseudohypoparathyroidism"> Pseudohypoparathyroidism</label>
+                <label><input type="radio" name="q47" value="Cranial diabetes insipidus"> Cranial diabetes insipidus</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-48">
+            <p>48-Each one of the following is a cause of cranial diabetes insipidus except ..</p>
+            <div class="options">
+                <label><input type="radio" name="q48" value="Pituitary surgery"> Pituitary surgery</label>
+                <label><input type="radio" name="q48" value="Lithium"> Lithium</label>
+                <label><input type="radio" name="q48" value="Histiocytosis X"> Histiocytosis X</label>
+                <label><input type="radio" name="q48" value="Craniopharyngioma"> Craniopharyngioma</label>
+                <label><input type="radio" name="q48" value="Post head-injury"> Post head-injury</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-49">
+            <p>49-Each one of the following is a cause of nephrogenic diabetes insipidus, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q49" value="Hypocalcaemia"> Hypocalcaemia</label>
+                <label><input type="radio" name="q49" value="Sickle-cell anaemia"> Sickle-cell anaemia</label>
+                <label><input type="radio" name="q49" value="Lithium"> Lithium</label>
+                <label><input type="radio" name="q49" value="Hypokalaemia"> Hypokalaemia</label>
+                <label><input type="radio" name="q49" value="Demeclocycline"> Demeclocycline</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-50">
+            <p>50-Each one of the following is a cause of nephrogenic diabetes insipidus, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q50" value="Hypercalcaemia"> Hypercalcaemia</label>
+                <label><input type="radio" name="q50" value="Demeclocycline"> Demeclocycline</label>
+                <label><input type="radio" name="q50" value="Histiocytosis X"> Histiocytosis X</label>
+                <label><input type="radio" name="q50" value="Lithium"> Lithium</label>
+                <label><input type="radio" name="q50" value="Hypokalaemia"> Hypokalaemia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-51">
+            <p>51-A 25-year-old man presents to endocrinology clinic for review. He has been referred with a sodium of 130 mmol/L. He feels well in himself and denies any systemic symptoms and specifically has no headaches or neurological symptoms. He has been passing normal volumes of urine. He has a past medical history of familial hypercholesterolemia and is under review by a metabolic team as he still has a total cholesterol of 9.1 mmol/L. Paired osmolalities are normal. Urine dipstick test is normal. His examination is largely normal apart from evidence of xanthomas. U&E, FBC, LFTs are normal. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q51" value="Pseudohyponatraemia"> Pseudohyponatraemia</label>
+                <label><input type="radio" name="q51" value="Nephrogenic SIADH"> Nephrogenic SIADH</label>
+                <label><input type="radio" name="q51" value="Cranial SIADH"> Cranial SIADH</label>
+                <label><input type="radio" name="q51" value="Diabetes insipidus"> Diabetes insipidus</label>
+                <label><input type="radio" name="q51" value="Type two diabetes mellitus"> Type two diabetes mellitus</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-52">
+            <p>52-An 82-year-old male nursing home resident with advanced vascular dementia presents with worsening confusion to the Emergency Department. His only regular medication is clopidogrel. His admission blood tests are as follows: Na+ 121 mmol/l K+ 3.8 mmol/l Urea 9.4 mmol/l Creatinine 110 umol/l His confusion screen (including CT brain) is normal. On examination he has dry mucous membranes, his blood pressure is 104/58 mmHg, pulse 94/min and temperature 36.1ºC. With regard to his low sodium what would be the most appropriate management?</p>
+            <div class="options">
+                <label><input type="radio" name="q52" value="Fluid restriction"> Fluid restriction</label>
+                <label><input type="radio" name="q52" value="Demeclocycline"> Demeclocycline</label>
+                <label><input type="radio" name="q52" value="Intravenous normal saline"> Intravenous normal saline</label>
+                <label><input type="radio" name="q52" value="Tolvaptan"> Tolvaptan</label>
+                <label><input type="radio" name="q52" value="Furosemide"> Furosemide</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-53">
+            <p>53-A 38-year-old male is admitted to the Emergency Department following a collapse while running a marathon. His blood results are as follows: Na+ 109 mmol/l K+ 3.4 mmol/l Urea 3.2 mmol/l Creatinine 68 umol/l During assessment he becomes increasingly obtunded and goes on to have multiple tonic clonic seizures. What is the most appropriate treatment from the list below to improve his neurological status?</p>
+            <div class="options">
+                <label><input type="radio" name="q53" value="Decompressive craniotomy"> Decompressive craniotomy</label>
+                <label><input type="radio" name="q53" value="Demeclocycline"> Demeclocycline</label>
+                <label><input type="radio" name="q53" value="Intravenous normal saline"> Intravenous normal saline</label>
+                <label><input type="radio" name="q53" value="IV Hypertonic saline ( 3% sodium chloride )"> IV Hypertonic saline ( 3% sodium chloride )</label>
+                <label><input type="radio" name="q53" value="Mannitol"> Mannitol</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-54">
+            <p>54-A 69-year-old man presents with confusion. His carers state that over the last month he has become increasingly lethargic, irritable and confused. Despite maintaining a good appetite, he has lost 10 kg in the last month. Blood results are as follows: Sodium 125 mmol/L Potassium 4 mmol/L Urea 3 Glucose (fasting) 6 mmol/L Urine sodium 30 Urine osmolality 543 mmol/L The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q54" value="Hypothyroidism"> Hypothyroidism</label>
+                <label><input type="radio" name="q54" value="Dilutional hyponatraemia"> Dilutional hyponatraemia</label>
+                <label><input type="radio" name="q54" value="Addison’s disease"> Addison’s disease</label>
+                <label><input type="radio" name="q54" value="Acute tubulointerstitial nephritis"> Acute tubulointerstitial nephritis</label>
+                <label><input type="radio" name="q54" value="Syndrome of inappropriate antidiuretic hormone (SIADH)"> Syndrome of inappropriate antidiuretic hormone (SIADH)</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-55">
+            <p>55-Each one of the following causes of hyponatraemia is associated with a urinary sodium of less than 20 mmol/L, except:</p>
+            <div class="options">
+                <label><input type="radio" name="q55" value="Diarrhoea"> Diarrhoea</label>
+                <label><input type="radio" name="q55" value="Psychogenic polydipsia"> Psychogenic polydipsia</label>
+                <label><input type="radio" name="q55" value="Burns"> Burns</label>
+                <label><input type="radio" name="q55" value="Secondary hyperaldosteronism"> Secondary hyperaldosteronism</label>
+                <label><input type="radio" name="q55" value="Syndrome of inappropriate ADH"> Syndrome of inappropriate ADH</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-56">
+            <p>56-A 86-year-old gentleman on a care of the elderly ward he is awaiting social care and is feeling well. The nurses have asked you to review him as he is becoming increasingly confused. His clinical examination is normal. You order some bloods: Na 123 mmol/l K 4.5 mmol/l Urea 3.6 mmol/l Creatinine 91 µmol/l In light of the low sodium, serum and urine osmolalities are ordered. They are as follows: Plasma osmolality 182 mOsmol/kg (285-295 mOsmol/kg) Urine osmolality 995 mOsmol/kg (500 - 800 mOsmol/kg) Urinary sodium concentration 51 mmol/l What is the most appropriate initial treatment?</p>
+            <div class="options">
+                <label><input type="radio" name="q56" value="Oral sodium tablets"> Oral sodium tablets</label>
+                <label><input type="radio" name="q56" value="Fluid restrict"> Fluid restrict</label>
+                <label><input type="radio" name="q56" value="IV saline"> IV saline</label>
+                <label><input type="radio" name="q56" value="Increased dietary salt"> Increased dietary salt</label>
+                <label><input type="radio" name="q56" value="Encourage oral fluids"> Encourage oral fluids</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-57">
+            <p>57-A 38-year-old male presents to the emergency department with nausea and confusion. He has a background medical history of bipolar affective disorder, type two diabetes mellitus, alcohol dependency and he was recently in a road traffic accident where he sustained a minor head injury. His regular medications include lithium, carbamazepine, and metformin. He has been binge drinking more than 28 units of alcohol at a time for the last 3 months. On examination, he appears euvolemic. Further investigations reveal: Na 119 mmol/L (135 - 145) Serum osmolality 264 mOsm/kg (275 - 300) Urinary sodium 42 mEq/L Urine osmolality 556 mOsm/kg (50 - 1200) Lithium level 1.4 mmol/L (0.4 – 1.0) What is the most likely cause for this patient’s hyponatremia?</p>
+            <div class="options">
+                <label><input type="radio" name="q57" value="Alcohol binge drinking"> Alcohol binge drinking</label>
+                <label><input type="radio" name="q57" value="Carbamazepine"> Carbamazepine</label>
+                <label><input type="radio" name="q57" value="Cranial diabetes insipidus secondary to head trauma"> Cranial diabetes insipidus secondary to head trauma</label>
+                <label><input type="radio" name="q57" value="Lithium"> Lithium</label>
+                <label><input type="radio" name="q57" value="Metformin"> Metformin</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-58">
+            <p>58-A 90-year-old man attends the hospital with progressive confusion over two weeks. His past medical history includes hypertension, diabetes, epilepsy and gallstones. His current medication includes doxazosin, bisoprolol, atorvastatin, levetiracetam, glimepiride, calcium and vitamin D. A few months ago his GP started a low dose of doxazosin in the mornings as his blood pressure was 190/110 mmHg. The blood pressure is now well controlled. He thinks the queen is coming to visit him today. There is no focal neurology on examination. Blood results are as follows: Na 126 mmol/L (135 - 145) K 4.5 mmol/L (3.5 - 5.0) Urea 5 mmol/L (2.0 - 7.0) Creatinine 80 µmol/L (55 - 120) Urinary sodium 40 mEq/L Urine osmolality 525 mOsm/kg (50 - 1200) What is the most likely cause of the confusion?</p>
+            <div class="options">
+                <label><input type="radio" name="q58" value="Doxazosin"> Doxazosin</label>
+                <label><input type="radio" name="q58" value="Bisoprolol"> Bisoprolol</label>
+                <label><input type="radio" name="q58" value="Atorvastatin"> Atorvastatin</label>
+                <label><input type="radio" name="q58" value="Levetiracetam"> Levetiracetam</label>
+                <label><input type="radio" name="q58" value="Glimepiride"> Glimepiride</label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة حدث للكيبورد لمنع حفظ الصفحة
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("تم منع حفظ الصفحة!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع فتح أدوات المطور
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault();
+                alert("تم تعطيل أدوات المطور!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع النقر بزر اليمين
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // يمنع فتح قائمة السياق
+            alert("النقر بزر الماوس الأيمن غير مسموح به.");
+        });
+
+        let currentQuestion = 1;
+        const totalQuestions = 58;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "High LDL",
+            q2: "Raised uric acid levels",
+            q3: "Waist circumference =110 cm, fasting glucose = 5.8 mmol/l, HDL = 0.8 mmol/l",
+            q4: "Decreases intrinsic cholesterol synthesis",
+            q5: "Grapefruit juice",
+            q6: "Clarithromycin",
+            q7: "LFTs at baseline, 3 months and 12 months",
+            q8: "Last thing in the evening",
+            q9: "Stop atorvastatin but continue her regular medication",
+            q10: "Pancreatic lipase inhibitor",
+            q11: "BMI > 35 kg/m2",
+            q12: "Laparoscopic-adjustable gastric banding",
+            q13: "Biliopancreatic diversion with duodenal switch",
+            q14: "Hypothyroidism",
+            q15: "Spironolactone",
+            q16: "Goserelin (Zoladex)",
+            q17: "Finasteride",
+            q18: "Gynaecomastia",
+            q19: "Autosomal recessive",
+            q20: "0%",
+            q21: "Haemochromatosis",
+            q22: "Transferrin saturation",
+            q23: "Ferritin and transferrin saturation",
+            q24: "Cardiomyopathy",
+            q25: "Oxytocin",
+            q26: "Acromegaly",
+            q27: "Pulmonary hypertension",
+            q28: "Colorectal carcinoma",
+            q29: "GH",
+            q30: "Pituitary apoplexy",
+            q31: "Sweat gland hypertrophy",
+            q32: "Serum insulin-like growth factor-1 (IGF-1) level",
+            q33: "Oral glucose tolerance test with growth hormone measurements",
+            q34: "Oral glucose tolerance test with serial GH measurements",
+            q35: "Glucose tolerance test",
+            q36: "Trans-sphenoidal surgery",
+            q37: "Trans-sphenoidal surgery",
+            q38: "Octreotide",
+            q39: "Growth hormone receptor antagonist",
+            q40: "Serum prolactin measurement",
+            q41: "Salicylates",
+            q42: "Primary hypothyroidism",
+            q43: "Hypopituitarism",
+            q44: "Antidiuretic hormone",
+            q45: "Water deprivation test",
+            q46: "Water deprivation test",
+            q47: "Psychogenic polydipsia",
+            q48: "Lithium",
+            q49: "Hypocalcaemia",
+            q50: "Histiocytosis X",
+            q51: "Pseudohyponatraemia",
+            q52: "Intravenous normal saline",
+            q53: "IV Hypertonic saline ( 3% sodium chloride )",
+            q54: "Syndrome of inappropriate ADH",
+            q55: "",
+            q56: "Fluid restrict",
+            q57: "Carbamazepine",
+            q58: "Glimepiride"
+        };
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q .style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            clearInterval(timerInterval);
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            let timeRemaining = 60;
+            document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    if (currentQuestion < totalQuestions) {
+                        nextQuestion();
+                    } else {
+                        evaluateQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+
+            clearInterval(timerInterval);
+        }
+
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+        
+        
+        function nextQuestion() {
+    // Increase the current question counter
+            currentQuestion++;
+
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+
+            // Show the next question
+            showQuestion();
+        }
+        
+    </script>
+</body>
+</html>
